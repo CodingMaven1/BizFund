@@ -1,0 +1,17 @@
+.CardTop{
+    height: 65vh;
+    width: 65vw;
+    display: flex;
+
+    .TopCard--Img{
+        height: 100%;
+        width: 60%;
+        background-color: #F0F7EE;
+    }
+
+    .TopCard--Details{
+        height: 100%;
+        width: 40%;
+        background-color: #0A090C;
+    }
+}
