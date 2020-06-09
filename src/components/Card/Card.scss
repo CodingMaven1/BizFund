@@ -1,0 +1,102 @@
+.Card{
+    height: 65vh;
+    width: 55vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .Card--Details{
+        height: 100%;
+        width: 45%;
+        border: 2px solid #59CD90;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        color: #F0F7EE;
+    }
+
+    .Card--Title{
+        font-size: 4rem;
+        text-transform: capitalize;
+        font-weight: 300;
+    }
+
+    .Card--Description{
+        font-size: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-weight: 300;
+    }
+
+    .Card--CreatorContainer{
+        word-break: break-all;
+        display: flex;
+
+        .Card--Hash{
+            font-size: 2rem;
+            font-weight: 300;
+            padding-right: 2rem;
+        }
+
+        .Card--Creator{
+            font-size: 2.2rem;
+            padding-left: 2rem;
+            text-align: center;
+            font-weight: 300;
+            width: 12vw;
+        }
+    }
+
+    .Card--Stats{
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        display: flex;
+
+        .Card--Container{
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            text-align: center;
+
+            .Card--Subtitle{
+                font-size: 2.2rem;
+                font-weight: 300;
+                padding-bottom: 1rem;
+            }
+
+            .Card--Value{
+                font-size: 2rem;
+                font-weight: 300;
+            }
+        }
+
+    }
+
+    .Card--Button{
+        background-color: transparent;
+        padding: 1rem 2rem;
+        font-size: 2.1rem;
+        text-transform: uppercase;
+        border: 1px solid #F9DC5C;
+        border-radius: 1rem;
+        color: #F0F7EE;
+        font-family: 'Lato', sans-serif;
+        cursor: pointer;
+        font-weight: 400;
+        transition: all 0.1s ease-in;
+
+        &:focus{
+            outline: none;
+        }
+
+        &:hover{
+            border-color: #59CD90;
+            background-color: #59CD90;
+        }
+    }
+
+}
