@@ -6,7 +6,7 @@ import Bottom from './Bottom/Bottom';
 const ProjectCard = (props) => {
     return(
         <div>
-            <Top />
+            <Top title={props.title} description={props.description} creator={props.creator} />
             <Bottom />
         </div>
     )

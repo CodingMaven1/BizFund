@@ -5,7 +5,7 @@ import './Bottom.scss';
 const Bottom = (props) => {
     return(
         <div className="CardBottom">
-
+            hgsfdthtrhjryh
         </div>
     )
 }

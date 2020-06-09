@@ -2,4 +2,7 @@
     height: 100vh;
     width: 100vw;
     background-color: #0A090C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

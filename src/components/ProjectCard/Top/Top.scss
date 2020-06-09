@@ -1,17 +1,78 @@
 .CardTop{
-    height: 65vh;
+    height: 55vh;
     width: 65vw;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
 
-    .TopCard--Img{
+    .CardTop--Details{
         height: 100%;
-        width: 60%;
-        background-color: #F0F7EE;
+        width: 35%;
+        border: 2px solid #59CD90;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        color: #F0F7EE;
+        // word-break: break-all;
     }
 
-    .TopCard--Details{
-        height: 100%;
-        width: 40%;
-        background-color: #0A090C;
+    .CardTop--Title{
+        font-size: 4rem;
+        text-transform: capitalize;
+        font-weight: 300;
+    }
+
+    .CardTop--Description{
+        font-size: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-weight: 300;
+    }
+
+    .CardTop--Creator{
+        word-break: break-all;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .CardTop--Subtitle{
+        font-size: 2rem;
+        font-weight: 300;
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .CardTop--Subtitle:first-child{
+        font-size: 2.4rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .CardTop--Button{
+        background-color: transparent;
+        padding: 1rem 2rem;
+        font-size: 2.1rem;
+        text-transform: uppercase;
+        border: 1px solid #e54b4b;
+        border-radius: 1rem;
+        color: #F0F7EE;
+        font-family: 'Lato', sans-serif;
+        cursor: pointer;
+        font-weight: 400;
+        transition: all 0.1s;
+    }
+
+    .CardTop--Button:focus{
+        outline: none;
+    }
+
+    .CardTop--Button:hover{
+        border-color: #59CD90;
+        background-color: #59CD90;
     }
 }
