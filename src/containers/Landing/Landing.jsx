@@ -1,9 +1,9 @@
 import React from "react";
 
-import web3 from '../ethereum/web3';
-import Campaign from '../ethereum/build/Campaign.json';
-import factory from '../ethereum/factory';
-import Card from '../components/Card/Card';
+import web3 from '../../ethereum/web3';
+import Campaign from '../../ethereum/build/Campaign.json';
+import factory from '../../ethereum/factory';
+import Card from '../../components/Card/Card';
 
 import './Landing.scss';
 
