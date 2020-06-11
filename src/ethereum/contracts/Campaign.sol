@@ -3,8 +3,8 @@ pragma solidity ^0.4.17;
 contract CampaignFactory {
     address[] public deployedCampaigns;
     
-    function createCampaign(uint minimum, string name, string description, uint required ) public {
-        address newCampaign = new Campaign(minimum, msg.sender, name, description, required);
+    function createCampaign(uint minimum, string namecamp, string descriptioncamp, uint requiredcamp ) public {
+        address newCampaign = new Campaign(minimum, msg.sender, namecamp, descriptioncamp, requiredcamp);
         deployedCampaigns.push(newCampaign);
     }
     function getDeployedCampaigns() public view returns (address[]) {
@@ -24,7 +24,7 @@ contract Campaign{
     
     Request[] public requests;
     address public manager;
-    string public description;
+    string public details;
     string public name;
     uint public required;
     uint public minimumContribution;
@@ -36,12 +36,12 @@ contract Campaign{
         _;
     }
     
-    function Campaign(uint minimum, address creator, string name, string description, uint required) public{
+    function Campaign(uint minimum, address creator, string namecamp, string descriptioncamp, uint requiredcamp) public{
         manager = creator;
         minimumContribution = minimum;
-        name = name;
-        description = description;
-        required = required;
+        name = namecamp;
+        details = descriptioncamp;
+        required = requiredcamp;
     }
     function contribute() public payable {
         require(msg.value > minimumContribution);
