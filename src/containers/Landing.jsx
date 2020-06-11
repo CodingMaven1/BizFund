@@ -18,7 +18,7 @@ class CampaignLanding extends React.Component {
         console.log(this.props.campaigns)
         return(
             <Card title="Smart Helmet" description="Smart Helmet is a next generation mototrcycle helmet with 360 visibility and sound control that will transform your biking experience" 
-            creator={campaigns[0]} backers="97" goal="$ 5000" recieved="$ 2100" />
+            creator={campaigns[0]} backers="97" goal="20 ether" minimum="0.05 ether" />
         )
     }
 }

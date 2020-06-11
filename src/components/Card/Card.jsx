@@ -24,8 +24,8 @@ const Card = (props) => {
                         <h1 className="Card--Value">{props.goal}</h1>
                     </div>
                     <div className="Card--Container">
-                        <h1 className="Card--Subtitle">Recieved:</h1>
-                        <h1 className="Card--Value">{props.recieved}</h1>
+                        <h1 className="Card--Subtitle">Minimum:</h1>
+                        <h1 className="Card--Value">{props.minimum}</h1>
                     </div>
                 </div>
 
