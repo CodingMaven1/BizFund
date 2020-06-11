@@ -5,12 +5,12 @@ import Campaign from '../ethereum/build/Campaign.json';
 import factory from '../ethereum/factory';
 import Card from '../components/Card/Card';
 
+import './Landing.scss';
 
 class CampaignLanding extends React.Component {
 
     state = {
         campaignsArr: [],
-        pos: 0
     }
 
     async componentDidMount(){
@@ -30,44 +30,30 @@ class CampaignLanding extends React.Component {
         })
     }
 
-    keyPressHandler = (event) => {
-        console.log(event.which)
-        let {pos, campaignsArr} = this.state;
-        if(event.which === 37){
-            if(pos === 0){
-                return;
-            }
-            else{
-                pos = pos - 1 
-                this.setState({pos})
-            }
-        }
-        else if(event.which === 39){
-            if(pos === (campaignsArr.length -1)){
-                return;
-            }
-            else{
-                pos = pos + 1
-                this.setState({pos})
-            }
-        }
-    }
-
     render(){
-        let {campaignsArr, pos} = this.state;
+        let {campaignsArr} = this.state;
 
-        let obj = campaignsArr[pos]
         let content;
         if(campaignsArr.length === 0){
-            content = <h1 style={{color: '#f9dc5c', fontWeight: 400, fontSize: '2.5rem'}}>Loading All The Campaigns...</h1>
+            content = <div className="Landing"><h1 className="Landing--Text">Loading All The Campaigns...</h1></div>
         }
         else{
-            content =  <div onKeyPress={e => this.keyPressHandler(e)}>
-                    <Card title={obj[0]} description={obj[1]} creator={obj[2]} backers={obj[5]} goal={obj[4]} minimum={obj[3]} />
+            content =  <div className="Landing">
+                    <div className="Landing--CardContainer">
+                    {
+                        campaignsArr.map((obj, idx) => {
+                            return(
+                                <Card key={idx} title={obj[0]} description={obj[1]} creator={obj[2]} backers={obj[5]} goal={obj[4]} minimum={obj[3]} />
+                            )
+                        })
+                    }
+                    </div>
+
                 </div>
+
         }
         return(
-            content
+                content
         )
     }
 }
