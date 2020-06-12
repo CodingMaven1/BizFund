@@ -23,8 +23,10 @@ class CampaignLanding extends React.Component {
             const manager = await campaign.methods.manager().call();
             const min = await campaign.methods.minimumContribution().call();
             const req = await campaign.methods.required().call();
+            let minimum = web3.utils.fromWei(min, 'ether') + ' ether'
+            let required = web3.utils.fromWei(req, 'ether') + ' ether'
             const backers = await campaign.methods.approversCount().call();
-            const arr = [name,details,manager,min,req, backers] 
+            const arr = [name,details,manager,minimum,required, backers] 
             campaignsArr.push(arr)
             this.setState({campaignsArr: campaignsArr})
         })

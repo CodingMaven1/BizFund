@@ -2,4 +2,99 @@
     height: 100vh;
     width: 100vw;
     background-color: #0a090c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Campaign--Form{
+        height: 55%;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .Campaign--Heading{
+            font-size: 3.5rem;
+            text-transform: capitalize;
+            color: #6565ff;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .Campaign--FormMain{
+            height: 60%;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .Campaign--ErrorMsg{
+            font-size: 2rem;
+            font-weight: 400;
+            color: #e54b4b;
+            margin-top: 1rem;
+        }
+
+        .Campaign--Msg{
+            font-size: 2rem;
+            font-weight: 400;
+            color: #59cd90;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .Campaign--Input{
+        height: 3.6vh;
+        width: 100%;
+        border-radius: 1rem;
+        border: none;
+        padding-left: 1vw;
+        font-size: 1.7rem;
+        font-family: 'Lato', sans-serif;
+    
+        &:focus{
+            outline: none;
+        }
+    }
+
+    .Campaign--TextArea{
+        width: 100%;
+        border-radius: 1rem;
+        border: none;
+        padding-left: 1vw;
+        font-size: 1.7rem;
+        font-family: 'Lato', sans-serif;
+        padding-top: 1rem;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    .Campaign--Submit{
+        background-color: transparent;
+        color: #fff;
+        padding: 1rem 1.5rem;
+        font-family: 'Lato', sans-serif;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        border: 1px solid #fff;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover{
+            border-color: #6565ff;
+            background-color: #6565ff;
+        }
+
+        &:focus{
+            outline: none;
+        }
+    }
+    
 }
+
