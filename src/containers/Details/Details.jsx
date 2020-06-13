@@ -2,13 +2,16 @@ import React from "react";
 
 import web3 from '../../ethereum/web3';
 import Campaign from '../../ethereum/build/Campaign.json';
+import StatBox from '../../components/StatBox/StatBox';
+import Button from '../../components/Button/Button';
 
 import './Details.scss';
 
 class Details extends React.Component{
 
     state={
-        data: null
+        data: null,
+        contribution: ''
     }
 
     async componentDidMount() {
@@ -21,6 +24,17 @@ class Details extends React.Component{
         this.setState({data})
     }
 
+    onChangeHandler = (event) => {
+        event.preventDefault();
+        let {contribution} = this.state;
+        contribution = event.target.value;
+        this.setState({contribution})
+    }
+
+    onSubmitHandler = (event) => {
+        event.preventDefault()
+    }
+
     render(){
         let content;
         let {data} = this.state;
@@ -29,7 +43,29 @@ class Details extends React.Component{
         }
         else{
             content = <div className="Details--Container">
-                
+                <div className="Details--Left">
+                    <h1 className="Details--LeftTitle">{data[0]}</h1>
+                    <p className="Details--LeftPara">{data[1]}</p>
+                    <h1 className="Details--LeftSubtitle">Created By:</h1>
+                    <h1 className="Details--LeftCreator">{data[7]}</h1>
+                    <div className="Details--LeftStats">
+                        <StatBox title="Backers" stat={data[4]} />
+                        <StatBox title="Required Amount" stat={data[3]} />
+                        <StatBox title="Recieved Amount" stat={data[5]} />
+                        <StatBox title="Minimum Contribution" stat={data[2]} />
+                    </div>
+                    <div className="Details--LeftRequests">
+                        <StatBox title="Total Requests" stat={data[6]} />
+                        <Button clicked={this.onClickHandler} title="See requests" size="1.7rem" padding="0.6rem 1.2rem"/>
+                    </div>
+                </div>
+                <div className="Details--Right">
+                    <form className="Details--RightForm" onSubmit={this.onSubmitHandler}>
+                        <h1 className="Details--RightTitle">Contribute to this Campaign</h1>
+                        <input type="text" required className="Details--Input" placeholder="Amount in ether" value={this.state.contribution} onChange={e => this.onChangeHandler(e)} />
+                        <input type="submit" value="Pay" className="Details--Submit" />
+                    </form>
+                </div>
             </div>
         }
         return(

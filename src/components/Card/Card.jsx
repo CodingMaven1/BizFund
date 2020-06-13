@@ -1,6 +1,8 @@
 import React from "react";
 import randomcolor from "randomcolor"
 
+import Button from '../Button/Button';
+
 import './Card.scss';
 
 const Card = (props) => {
@@ -10,7 +12,7 @@ const Card = (props) => {
             <div className="Card--Details" >
                 <h1 className="Card--Title">{props.title}</h1>
                 <p className="Card--Description">{props.description}</p>
-                <button onClick={props.clicked} className="Card--Button">back this project</button>
+                <Button clicked={props.clicked} title="back this project" />
             </div>
         </div>
     )

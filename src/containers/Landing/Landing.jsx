@@ -20,8 +20,6 @@ class CampaignLanding extends React.Component {
             const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), obj);
             const arr = await campaign.methods.getBriefData().call()
             arr[2] = obj
-            // let minimum = web3.utils.fromWei(min, 'ether') + ' ether'
-            // let required = web3.utils.fromWei(req, 'ether') + ' ether'
             campaignsArr.push(arr)
             this.setState({campaignsArr: campaignsArr})
         })
