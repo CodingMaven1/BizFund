@@ -18,17 +18,20 @@ class CampaignLanding extends React.Component {
         let campaignsArr = []
         campaigns.map(async (obj,idx) => {
             const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), obj);
-            const name = await campaign.methods.name().call();
-            const details = await campaign.methods.details().call();
-            const manager = await campaign.methods.manager().call();
-            const min = await campaign.methods.minimumContribution().call();
-            const req = await campaign.methods.required().call();
-            let minimum = web3.utils.fromWei(min, 'ether') + ' ether'
-            let required = web3.utils.fromWei(req, 'ether') + ' ether'
-            const backers = await campaign.methods.approversCount().call();
-            const arr = [name,details,manager,minimum,required, backers] 
+            const arr = await campaign.methods.getBriefData().call()
+            arr[2] = obj
+            // let minimum = web3.utils.fromWei(min, 'ether') + ' ether'
+            // let required = web3.utils.fromWei(req, 'ether') + ' ether'
             campaignsArr.push(arr)
             this.setState({campaignsArr: campaignsArr})
+        })
+    }
+
+    onDetailsHandler = (event, loc) => {
+        event.preventDefault();
+
+        this.props.history.push({
+            pathname: `/details/${loc}`
         })
     }
 
@@ -45,7 +48,7 @@ class CampaignLanding extends React.Component {
                     {
                         campaignsArr.map((obj, idx) => {
                             return(
-                                <Card key={idx} title={obj[0]} description={obj[1]} creator={obj[2]} backers={obj[5]} goal={obj[4]} minimum={obj[3]} />
+                                <Card key={idx} title={obj[0]} description={obj[1]} clicked={e => this.onDetailsHandler(e,obj[2])} />
                             )
                         })
                     }

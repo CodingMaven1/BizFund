@@ -1,0 +1,14 @@
+.Details{
+    height: 100vh;
+    width: 100vw;
+    background-color: #0a090c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Details--Heading{
+        font-size: 3rem;
+        color: #6565ff;
+        font-weight: 300;
+    }
+}

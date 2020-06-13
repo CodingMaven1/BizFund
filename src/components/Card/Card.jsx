@@ -1,34 +1,16 @@
 import React from "react";
+import randomcolor from "randomcolor"
 
 import './Card.scss';
 
 const Card = (props) => {
     return(
 
-        <div className="Card">
+        <div className="Card" style={{borderColor: randomcolor()}}>
             <div className="Card--Details" >
                 <h1 className="Card--Title">{props.title}</h1>
                 <p className="Card--Description">{props.description}</p>
-                <button className="Card--Button">back this project</button>
-                <div className="Card--CreatorContainer">
-                    <h1 className="Card--Creator">Created By:</h1>
-                    <h1 className="Card--Hash">{props.creator}</h1>
-                </div>
-                <div className="Card--Stats">
-                    <div className="Card--Container">
-                        <h1 className="Card--Subtitle">Backers:</h1>
-                        <h1 className="Card--Value">{props.backers}</h1>
-                    </div>
-                    <div className="Card--Container">
-                        <h1 className="Card--Subtitle">Goal:</h1>
-                        <h1 className="Card--Value">{props.goal}</h1>
-                    </div>
-                    <div className="Card--Container">
-                        <h1 className="Card--Subtitle">Minimum:</h1>
-                        <h1 className="Card--Value">{props.minimum}</h1>
-                    </div>
-                </div>
-
+                <button onClick={props.clicked} className="Card--Button">back this project</button>
             </div>
         </div>
     )

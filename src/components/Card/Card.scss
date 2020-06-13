@@ -1,16 +1,16 @@
 .Card{
-    height: 65vh;
-    width: 26vw;
+    height: 40vh;
+    width: 20vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #59CD90;
+    border-radius: 1rem;
     margin-bottom: 4vh;
 
     .Card--Details{
         height: 100%;
         width: 100%;
-        border: 2px solid #59CD90;
-        border-radius: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -29,51 +29,6 @@
         padding-left: 2rem;
         padding-right: 2rem;
         font-weight: 300;
-    }
-
-    .Card--CreatorContainer{
-        word-break: break-all;
-        display: flex;
-
-        .Card--Hash{
-            font-size: 2rem;
-            font-weight: 300;
-            padding-right: 2rem;
-        }
-
-        .Card--Creator{
-            font-size: 2.2rem;
-            padding-left: 2rem;
-            text-align: center;
-            font-weight: 300;
-            width: 12vw;
-        }
-    }
-
-    .Card--Stats{
-        width: 100%;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        display: flex;
-
-        .Card--Container{
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-            text-align: center;
-
-            .Card--Subtitle{
-                font-size: 2.2rem;
-                font-weight: 300;
-                padding-bottom: 1rem;
-            }
-
-            .Card--Value{
-                font-size: 2rem;
-                font-weight: 300;
-            }
-        }
-
     }
 
     .Card--Button{
