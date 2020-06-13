@@ -11,7 +11,9 @@ class Details extends React.Component{
 
     state={
         data: null,
-        contribution: ''
+        contribution: '',
+        errormsg: '',
+        msg: ''
     }
 
     async componentDidMount() {
@@ -31,13 +33,37 @@ class Details extends React.Component{
         this.setState({contribution})
     }
 
-    onSubmitHandler = (event) => {
+    onSubmitHandler = async (event) => {
         event.preventDefault()
+        let {data, contribution} = this.state
+        if(isNaN(parseInt(contribution))){
+            this.setState({errormsg: 'Please enter numerical values!'})
+            return;
+        }
+        if(contribution <= data[2]){
+            this.setState({errormsg: 'Please enter a value more than minimum contribution!'})
+            return;
+        }
+
+        const accounts = await web3.eth.getAccounts();
+        contribution = web3.utils.toWei(contribution, 'ether');
+
+        try{
+            this.setState({errormsg: '', msg: 'Transaction in progress...'})
+            const id = this.props.match.params.id
+            const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), id)
+            const hash = await campaign.methods.contribute().send({from: accounts[0], value: contribution})
+            console.log(hash)
+            this.setState({msg: 'Your transaction was successfull!'})
+            setTimeout(() => window.location.reload(), 3500)
+        } catch(e){
+            this.setState({msg: '', errormsg: e.message})
+        }
     }
 
     render(){
         let content;
-        let {data} = this.state;
+        let {data, errormsg, msg} = this.state;
         if(data === null){
             content = <h1 className="Details--Heading">Loading the campaign data...</h1>
         }
@@ -56,13 +82,15 @@ class Details extends React.Component{
                     </div>
                     <div className="Details--LeftRequests">
                         <StatBox title="Total Requests" stat={data[6]} />
-                        <Button clicked={this.onClickHandler} title="See requests" size="1.7rem" padding="0.6rem 1.2rem"/>
+                        <Button clicked={this.onClickHandler} title="See requests" size="1.7rem" padding="0.5rem 1rem" transform="capitalize"/>
                     </div>
                 </div>
                 <div className="Details--Right">
                     <form className="Details--RightForm" onSubmit={this.onSubmitHandler}>
                         <h1 className="Details--RightTitle">Contribute to this Campaign</h1>
                         <input type="text" required className="Details--Input" placeholder="Amount in ether" value={this.state.contribution} onChange={e => this.onChangeHandler(e)} />
+                        <h1 className="Details--ErrorMsg">{errormsg}</h1>
+                        <h1 className="Details--Msg">{msg}</h1>
                         <input type="submit" value="Pay" className="Details--Submit" />
                     </form>
                 </div>

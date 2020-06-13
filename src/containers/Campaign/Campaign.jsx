@@ -43,8 +43,7 @@ class Campaign extends React.Component{
             this.setState({msg: 'Just a moment! Trying to deploy your campaign.', errormsg: ''})
             const campaign = await factory.methods.createCampaign(min, title, description, req).send({from: accounts[0]})
             console.log(campaign)
-            let msg = 'Successful! Your campaign was deployed'
-            this.setState({errormsg: '', msg: msg})
+            this.setState({errormsg: '', msg: 'Successful! Your campaign was deployed'})
             setTimeout(() => {this.props.history.push({pathname: '/'})}, 4000)
         } catch(e){
             console.log(e)
