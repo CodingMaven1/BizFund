@@ -1,0 +1,42 @@
+.ViewReq{
+    height: 100vh;
+    width: 100vw;
+    background-color: #0a090c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #F0F7EE;
+
+    .ViewReq--Title{
+        font-size: 3rem;
+        color: #6565ff;
+        font-weight: 300;
+        margin-bottom: 5vh;
+    }
+
+    .ViewReq--Table {
+        text-align: center;
+        border-collapse: collapse;
+        border: 1px solid #F0F7EE;
+        width: 75%;
+        margin-bottom: 5vh;
+
+        td{
+            border: 1px solid #F0F7EE;
+            padding: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        th{
+            text-align: center;
+            background-color: #6565ff;
+            color: #F0F7EE;
+            font-size: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #F0F7EE;
+        }
+      }
+
+
+}

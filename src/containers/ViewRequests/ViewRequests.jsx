@@ -2,13 +2,15 @@ import React from "react";
 
 import web3 from '../../ethereum/web3';
 import Campaign from '../../ethereum/build/Campaign.json';
+import Button from '../../components/Button/Button';
 
 import './ViewRequests.scss';
 
 class ViewRequests extends React.Component{
     state={
-        data: [],
-        count: ''
+        data: '',
+        count: '',
+        id: ''
     }
 
     async componentDidMount(){
@@ -20,13 +22,69 @@ class ViewRequests extends React.Component{
             let obj = await campaign.methods.requests(i).call();
             data.push(obj)
         }
-        this.setState({data, count}, () => console.log(this.state))
+        this.setState({data, count, id}, () => console.log(this.state))
     }
 
-    render(){
-        return(
-            <div className="ViewRequests">
+    renderTableHeader() {
+        let header = Object.keys(this.state.data[0])
+        let data = header.slice(5,10)
+        data.splice(0, 0, "S.N.")
+        console.log(data)
+        return data.map((key, index) => {
+           return <th key={index}>{key.toUpperCase()}</th>
+        })
+     }
 
+     onClickHandler = () => {
+        const {id} = this.state;
+        this.props.history.push({pathname: `/createrequest/${id}`})
+    }
+
+    renderTableData() {
+        return this.state.data.map((data, idx) => {
+            let val;
+            if(data[3]){
+                val = "Approved"
+            }
+            else{
+                val = "Yet to be approved"
+            }
+
+            data[1] =  web3.utils.fromWei(data[1], 'ether') + ' ether'
+           return (
+              <tr key={idx}>
+                 <td>{idx}</td>
+                 <td>{data[0]}</td>
+                 <td>{data[1]}</td>
+                 <td>{data[2]}</td>
+                 <td>{val}</td>
+                 <td>{data[4]}</td>
+              </tr>
+           )
+        })
+     }
+
+    render(){
+        let {data} = this.state;
+        let content;
+        if(data === ''){
+            content = <h1 className="ViewReq--Title">Fetching All The Requests...</h1>
+        }
+        else if(data.length === 0){
+            content = <h1 className="ViewReq--Title">No Requests Have Been Made By The Manager!</h1>
+        }
+        else{
+            content = <table className='ViewReq--Table'>
+                    <tbody>
+                    <tr>{this.renderTableHeader()}</tr>
+                    {this.renderTableData()}
+                    </tbody>
+                </table>
+        }
+        return(
+            <div className="ViewReq">
+                {content}
+                <Button clicked={this.onClickHandler} title="Create New Reqest" size="1.7rem" padding="1.25rem 1.8rem" transform="capitalize"/>
             </div>
         )
     }
