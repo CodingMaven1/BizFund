@@ -11,6 +11,24 @@
     font-weight: 400;
     transition: all 0.1s ease-in;
 
+    &--Green{
+        border-color: #F0F7EE;
+
+        &:hover{
+            background-color: #59cd90 !important;
+            border-color: #59cd90 !important;
+        }
+    }
+
+    &--Red{
+        border-color: #F0F7EE;
+
+        &:hover{
+            background-color: #e54b4b !important; 
+            border-color: #e54b4b !important;
+        }
+    }
+
     &:focus{
         outline: none;
     }

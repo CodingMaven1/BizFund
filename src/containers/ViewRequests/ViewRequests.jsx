@@ -10,25 +10,40 @@ class ViewRequests extends React.Component{
     state={
         data: '',
         count: '',
-        id: ''
+        id: '',
+        appCount: '',
+        errormsg: '',
+        msg: ''
     }
 
     async componentDidMount(){
         const id = this.props.match.params.id
         const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), id)
         const count = await campaign.methods.getRequestsCount().call();
+        const appCount = await campaign.methods.approversCount().call();
         let data = []
         for(let i=0; i< count; i++){
             let obj = await campaign.methods.requests(i).call();
             data.push(obj)
         }
-        this.setState({data, count, id}, () => console.log(this.state))
+        this.setState({data, count, id, appCount}, () => console.log(this.state))
+    }
+
+    onApproveHandler = async () => {
+        const id = this.props.match.params.id
+        const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), id)
+        const accounts = await web3.eth.getAccounts();
+        const boolval = await campaign.methods.approvers(accounts[0]).call()
+        if(boolval){
+            this.setState({msg: 'Raising your approval...', errormsg: ''})
+        }
     }
 
     renderTableHeader() {
         let header = Object.keys(this.state.data[0])
         let data = header.slice(5,10)
         data.splice(0, 0, "S.N.")
+        data.push("Approve Request", "Finalize Request")
         console.log(data)
         return data.map((key, index) => {
            return <th key={index}>{key.toUpperCase()}</th>
@@ -41,6 +56,7 @@ class ViewRequests extends React.Component{
     }
 
     renderTableData() {
+        let {appCount} = this.state;
         return this.state.data.map((data, idx) => {
             let val;
             if(data[3]){
@@ -53,12 +69,14 @@ class ViewRequests extends React.Component{
             data[1] =  web3.utils.fromWei(data[1], 'ether') + ' ether'
            return (
               <tr key={idx}>
-                 <td>{idx}</td>
+                 <td>{idx + 1}</td>
                  <td>{data[0]}</td>
                  <td>{data[1]}</td>
                  <td>{data[2]}</td>
                  <td>{val}</td>
-                 <td>{data[4]}</td>
+                 <td>{data[4]}/{appCount}</td>
+                 <td><Button green clicked={this.onApproveHandler} title="Approve" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
+                 <td><Button red clicked={this.onFinalizeHandler} title="Finalize" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
               </tr>
            )
         })

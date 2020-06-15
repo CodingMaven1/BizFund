@@ -59,7 +59,7 @@ class CreateRequests extends React.Component{
             const hash = await campaign.methods.createRequest(description, req, address).send({from: accounts[0]})
             console.log(hash)
             this.setState({msg: 'Your request was created!'})
-            setTimeout(() => this.props.history.push({pathname: `/details/${id}`}), 3500)
+            setTimeout(() => this.props.history.push({pathname: `/viewrequests/${id}`}), 3500)
         } catch(e){
             this.setState({msg: '', errormsg: e.message})
         }
