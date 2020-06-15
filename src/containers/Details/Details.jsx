@@ -13,7 +13,8 @@ class Details extends React.Component{
         data: null,
         contribution: '',
         errormsg: '',
-        msg: ''
+        msg: '',
+        id: ''
     }
 
     async componentDidMount() {
@@ -23,7 +24,7 @@ class Details extends React.Component{
         data[2] =  web3.utils.fromWei(data[2], 'ether') + ' ether'
         data[3] =  web3.utils.fromWei(data[3], 'ether') + ' ether'
         data[5] =  web3.utils.fromWei(data[5], 'ether') + ' ether'
-        this.setState({data})
+        this.setState({data, id})
     }
 
     onChangeHandler = (event) => {
@@ -31,6 +32,11 @@ class Details extends React.Component{
         let {contribution} = this.state;
         contribution = event.target.value;
         this.setState({contribution})
+    }
+
+    onClickHandler = () => {
+        const {id} = this.state;
+        this.props.history.push({pathname: `/viewrequests/${id}`})
     }
 
     onSubmitHandler = async (event) => {
