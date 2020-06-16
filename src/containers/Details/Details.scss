@@ -124,24 +124,30 @@
             }
         }
 
-        .Details--ErrorMsg{
-            font-size: 1.7rem;
-            color: #e54b4b;
-            font-weight: 400;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            text-align: center;
+        .Details--Msgs{
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 2vh;
-        }
 
-        .Details--Msg{
-            font-size: 1.7rem;
-            color: #59cd90;
-            font-weight: 400;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            text-align: center;
-            margin-bottom: 2vh;
+            .Details--ErrorMsg{
+                font-size: 1.7rem;
+                color: #e54b4b;
+                font-weight: 400;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                text-align: center;
+            }
+    
+            .Details--Msg{
+                font-size: 1.7rem;
+                color: #59cd90;
+                font-weight: 400;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                text-align: center;
+            }
         }
 
     }

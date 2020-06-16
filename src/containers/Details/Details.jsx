@@ -95,8 +95,10 @@ class Details extends React.Component{
                     <form className="Details--RightForm" onSubmit={this.onSubmitHandler}>
                         <h1 className="Details--RightTitle">Contribute to this Campaign</h1>
                         <input type="text" required className="Details--Input" placeholder="Amount in ether" value={this.state.contribution} onChange={e => this.onChangeHandler(e)} />
-                        <h1 className="Details--ErrorMsg">{errormsg}</h1>
-                        <h1 className="Details--Msg">{msg}</h1>
+                        <div className="Details--Msgs">
+                            <h1 className="Details--ErrorMsg">{errormsg}</h1>
+                            <h1 className="Details--Msg">{msg}</h1>
+                        </div>
                         <input type="submit" value="Pay" className="Details--Submit" />
                     </form>
                 </div>

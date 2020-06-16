@@ -63,8 +63,10 @@ class Campaign extends React.Component{
                         <input type="text" required className="Campaign--Input" placeholder="Required Amount" value={copystate.req} onChange={e => this.onChangeHandler(e,"req")} />
                         <input type="text" required className="Campaign--Input" placeholder="Minimum Contribution" value={copystate.min} onChange={e => this.onChangeHandler(e,"min")} />
                     </div>
-                    <h1 className="Campaign--ErrorMsg">{copystate.errormsg}</h1>
-                    <h1 className="Campaign--Msg">{copystate.msg}</h1>
+                    <div className="Campaign--Msgs">
+                        <h1 className="Campaign--ErrorMsg">{copystate.errormsg}</h1>
+                        <h1 className="Campaign--Msg">{copystate.msg}</h1>
+                    </div>
                     <input type="submit" value="Create" className="Campaign--Submit" />
                 </form>
             </div>

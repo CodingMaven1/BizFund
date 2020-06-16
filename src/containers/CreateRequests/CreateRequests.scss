@@ -30,19 +30,26 @@
             justify-content: space-between;
         }
 
-        .CreateReq--ErrorMsg{
-            font-size: 2rem;
-            font-weight: 400;
-            color: #e54b4b;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
+        .CreateReq--Msgs{
 
-        .CreateReq--Msg{
-            font-size: 2rem;
-            font-weight: 400;
-            color: #59cd90;
             margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+
+            .CreateReq--ErrorMsg{
+                font-size: 2rem;
+                font-weight: 400;
+                color: #e54b4b;
+                text-align: center;
+            }
+    
+            .CreateReq--Msg{
+                font-size: 2rem;
+                font-weight: 400;
+                color: #59cd90;
+            }
         }
     }
 

@@ -76,8 +76,10 @@ class CreateRequests extends React.Component{
                         <input type="text" required className="CreateReq--Input" placeholder="Required Amount in ether" value={copystate.req} onChange={e => this.onChangeHandler(e,"req")} />
                         <input type="text" required className="CreateReq--Input" placeholder="Reciepient Address" value={copystate.address} onChange={e => this.onChangeHandler(e,"address")} />
                     </div>
-                    <h1 className="CreateReq--ErrorMsg">{copystate.errormsg}</h1>
-                    <h1 className="CreateReq--Msg">{copystate.msg}</h1>
+                    <div className="CreateReq--Msgs">
+                        <h1 className="CreateReq--ErrorMsg">{copystate.errormsg}</h1>
+                        <h1 className="CreateReq--Msg">{copystate.msg}</h1>
+                    </div>
                     <input type="submit" value="Create" className="CreateReq--Submit" />
                 </form>
             </div>
