@@ -10,18 +10,19 @@ import './Landing.scss';
 class CampaignLanding extends React.Component {
 
     state = {
-        campaignsArr: [],
+        campaignsArr: '',
     }
 
     async componentDidMount(){
         const campaigns = await factory.methods.getDeployedCampaigns().call()
+        console.log(campaigns)
         let campaignsArr = []
         campaigns.map(async (obj,idx) => {
             const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), obj);
             const arr = await campaign.methods.getBriefData().call()
             arr[2] = obj
             campaignsArr.push(arr)
-            this.setState({campaignsArr: campaignsArr})
+            this.setState({campaignsArr})
         })
     }
 
@@ -37,8 +38,11 @@ class CampaignLanding extends React.Component {
         let {campaignsArr} = this.state;
 
         let content;
-        if(campaignsArr.length === 0){
+        if(campaignsArr === ''){
             content = <div className="Landing"><h1 className="Landing--Text">Loading All The Campaigns...</h1></div>
+        }
+        else if(campaignsArr.length === 0){
+            content = <div className="Landing"><h1 className="Landing--Text">Currently, there are no campaigns!</h1></div>
         }
         else{
             content =  <div className="Landing">

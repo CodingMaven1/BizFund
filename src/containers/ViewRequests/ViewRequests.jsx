@@ -24,18 +24,37 @@ class ViewRequests extends React.Component{
         let data = []
         for(let i=0; i< count; i++){
             let obj = await campaign.methods.requests(i).call();
+            obj[1] =  web3.utils.fromWei(obj[1], 'ether') + ' ether'
             data.push(obj)
         }
         this.setState({data, count, id, appCount}, () => console.log(this.state))
     }
 
-    onApproveHandler = async () => {
+    onApproveHandler = async (event, sn) => {
+        event.preventDefault()
         const id = this.props.match.params.id
         const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), id)
         const accounts = await web3.eth.getAccounts();
         const boolval = await campaign.methods.approvers(accounts[0]).call()
-        if(boolval){
-            this.setState({msg: 'Raising your approval...', errormsg: ''})
+        const boolval2 = await campaign.methods.checkApprover(sn, accounts[0]).call()
+        console.log(boolval, boolval2)
+        if(!boolval){
+            this.setState({msg:'', errormsg:'You have to be one of the contributors to apporve a request!'})
+            return;
+        }
+        if(boolval2){
+            this.setState({msg: '', errormsg: 'You have already raised your approval for this request!'})
+            return;
+        }
+
+        try{
+            this.setState({errormsg: '', msg: 'Raising your approval...'})
+            const hash = await campaign.methods.approveRequest(sn).send({from: accounts[0]})
+            console.log(hash)
+            this.setState({msg: 'Your approval was raised!'})
+            setTimeout(() => window.location.reload(), 1500)
+        } catch(e){
+            this.setState({msg: '', errormsg: e.message})
         }
     }
 
@@ -66,7 +85,6 @@ class ViewRequests extends React.Component{
                 val = "Yet to be approved"
             }
 
-            data[1] =  web3.utils.fromWei(data[1], 'ether') + ' ether'
            return (
               <tr key={idx}>
                  <td>{idx + 1}</td>
@@ -75,7 +93,7 @@ class ViewRequests extends React.Component{
                  <td>{data[2]}</td>
                  <td>{val}</td>
                  <td>{data[4]}/{appCount}</td>
-                 <td><Button green clicked={this.onApproveHandler} title="Approve" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
+                 <td><Button green clicked={e => this.onApproveHandler(e,idx)} title="Approve" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
                  <td><Button red clicked={this.onFinalizeHandler} title="Finalize" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
               </tr>
            )
@@ -83,7 +101,7 @@ class ViewRequests extends React.Component{
      }
 
     render(){
-        let {data} = this.state;
+        let {data, errormsg, msg} = this.state;
         let content;
         if(data === ''){
             content = <h1 className="ViewReq--Title">Fetching All The Requests...</h1>
@@ -102,6 +120,10 @@ class ViewRequests extends React.Component{
         return(
             <div className="ViewReq">
                 {content}
+                <div className="ViewReq--Msgs">
+                    <h1 className="ViewReq--ErrorMsg">{errormsg}</h1>
+                    <h1 className="ViewReq--Msg">{msg}</h1>
+                </div>
                 <Button clicked={this.onClickHandler} title="Create New Reqest" size="1.7rem" padding="1.25rem 1.8rem" transform="capitalize"/>
             </div>
         )

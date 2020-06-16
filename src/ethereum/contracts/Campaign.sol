@@ -45,8 +45,10 @@ contract Campaign{
     }
     function contribute() public payable {
         require(msg.value > minimumContribution);
-        approvers[msg.sender] = true;
-        approversCount++;
+        if(!approvers[msg.sender]) {
+            approvers[msg.sender] = true;
+            approversCount++;
+        }
     }
     function createRequest(string description, uint value, address recipient) public restricted {
         Request memory newRequest = Request({
@@ -95,6 +97,11 @@ contract Campaign{
 
     function getRequestsCount() public view returns (uint){
         return requests.length;
+    }
+
+    function checkApprover(uint index, address sender) public view returns (bool){
+        Request storage request = requests[index];
+        return request.approvals[sender];
     }
 }
  

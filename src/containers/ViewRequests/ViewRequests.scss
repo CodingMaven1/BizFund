@@ -38,5 +38,26 @@
         }
       }
 
+      .ViewReq--Msgs{
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+
+          .ViewReq--ErrorMsg{
+            font-size: 2rem;
+            font-weight: 400;
+            color: #e54b4b;
+            text-align: center;
+          }
+
+          .ViewReq--Msg{
+            font-size: 2rem;
+            font-weight: 400;
+            color: #59cd90;
+          }
+      }
+
 
 }
