@@ -152,7 +152,9 @@ class ViewRequests extends React.Component{
         }
         return(
             <div className="ViewReq">
-                {content}
+                <div className="ViewReq--Container">
+                    {content}
+                </div>
                 <div className="ViewReq--Msgs">
                     <h1 className="ViewReq--ErrorMsg">{errormsg}</h1>
                     <h1 className="ViewReq--Msg">{msg}</h1>

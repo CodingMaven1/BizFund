@@ -16,6 +16,7 @@
     .Details--Container{
         width: 70%;
         display: flex;
+        flex-wrap: wrap;
         
         .Details--Left{
             width: 65%;
@@ -53,6 +54,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                flex-wrap: wrap;
                 padding-right: 2vw;
                 margin-bottom: 5vh;
             }
@@ -147,6 +149,61 @@
                 padding-left: 1rem;
                 padding-right: 1rem;
                 text-align: center;
+            }
+        }
+
+    }
+}
+
+@media(max-width: 420px){
+    .Details{ 
+        height: 140vh;
+
+        .Details--Container{
+            width: 95%;
+            align-items: center;
+            flex-direction: column;
+
+            .Details--Left{
+                width: 100%;
+                align-items: center;
+                border-right: none;
+                border-bottom: 2px solid #6565ff;
+
+                .Details--LeftPara{
+                    text-align: justify;
+                    font-size: 2.3rem;
+                    padding: 1rem;
+                }
+
+                .Details--LeftCreator{
+                    padding-left: 1.5rem;
+                    padding-left: 1.5rem;
+                    word-break: break-all;
+                }
+
+                .Details--LeftRequests{
+                    margin-bottom: 2rem;
+                }
+            }
+            
+
+            .Details--Right{
+                width: 80%;
+                margin-top: 5vh;
+
+                .Details--RightTitle{
+                    margin-bottom: 5vh;
+                }
+
+                .Details--RightForm{
+                    width: 100%;
+                }
+            }
+
+            .Details--Input{
+                height: 4vh;
+                width: 90%;
             }
         }
 

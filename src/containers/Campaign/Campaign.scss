@@ -55,7 +55,7 @@
     .Campaign--Input{
         height: 3.6vh;
         width: 100%;
-        border-radius: 1rem;
+        border-radius: 0.7rem;
         border: none;
         padding-left: 1vw;
         font-size: 1.7rem;
@@ -102,5 +102,22 @@
         }
     }
     
+}
+
+@media (max-width: 420px){
+    .Campaign{
+
+        .Campaign--Form{
+            width: 100%;
+
+            .Campaign--Heading{
+                font-size: 3rem;
+            }
+        }
+
+        .Campaign--Input{
+            height: 4vh;
+        }
+    }
 }
 

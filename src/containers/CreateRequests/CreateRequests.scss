@@ -107,3 +107,25 @@
     
 }
 
+@media(max-width: 420px){
+    .CreateReq{
+
+        .CreateReq--Form{
+            width: 95%;
+
+            .CreateReq--Heading{
+                text-align: center;
+                font-size: 3rem;
+            }
+
+            .CreateReq--FormMain{
+                width: 75%;
+            }
+
+            .CreateReq--Input{
+                height: 4vh;
+                border-radius: 0.7rem;
+            }
+        }
+    }
+}

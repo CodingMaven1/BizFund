@@ -16,3 +16,14 @@
         font-weight: 300;
     }
 }
+
+@media(max-width: 420px){
+    .StatBox{
+        width: 50%;
+        margin-bottom: 2rem;
+
+        .StatBox--Title{
+            text-align: center;
+        }
+    }
+}

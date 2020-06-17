@@ -32,3 +32,14 @@
     }
 
 }
+
+@media (max-width: 420px){
+    .Card{
+        width: 80vw;
+        height: 45vh;
+
+        .Card--Title{
+            font-size: 3.5rem;
+        }
+    }
+}

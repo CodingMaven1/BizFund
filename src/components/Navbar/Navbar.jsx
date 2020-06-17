@@ -7,7 +7,7 @@ const Navbar = () => {
     return(
         <div className="Navbar">
             <Link style={{textDecoration: 'none'}} to="/"><h1 className="Navbar--Logo">BizFund</h1></Link>
-            <Link to="/campaign"><button className="Navbar--Campaign">Create Campaign</button></Link>
+            <Link to="/campaign"><button className="Navbar--Campaign">Campaign</button></Link>
         </div>
     )
 }

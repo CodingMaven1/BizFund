@@ -43,3 +43,16 @@
         }
     }
 }
+
+@media (max-width: 420px){
+    .Navbar{
+
+        .Navbar--Logo{
+            font-size: 3.8rem;
+        }
+
+        .Navbar--Campaign{
+            font-size: 1.8rem;
+        }
+    }
+}
