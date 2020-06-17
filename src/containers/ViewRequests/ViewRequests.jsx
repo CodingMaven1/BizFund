@@ -52,7 +52,7 @@ class ViewRequests extends React.Component{
             const hash = await campaign.methods.approveRequest(sn).send({from: accounts[0]})
             console.log(hash)
             this.setState({msg: 'Your approval was raised!'})
-            setTimeout(() => window.location.reload(), 1500)
+            setTimeout(() => this.props.history.push({pathname: '/'}), 2500)
         } catch(e){
             this.setState({msg: '', errormsg: e.message})
         }
@@ -84,7 +84,7 @@ class ViewRequests extends React.Component{
             const hash = await campaign.methods.finalizeRequest(sn).send({from: accounts[0]})
             console.log(hash)
             this.setState({msg: 'Your request was finalized!'})
-            setTimeout(() => window.location.reload(), 1500)
+            setTimeout(() => this.props.history.push({pathname: '/'}), 2500)
         } catch(e){
             this.setState({msg: '', errormsg: e.message})
         }

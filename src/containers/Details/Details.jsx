@@ -61,7 +61,7 @@ class Details extends React.Component{
             const hash = await campaign.methods.contribute().send({from: accounts[0], value: contribution})
             console.log(hash)
             this.setState({msg: 'Your transaction was successfull!'})
-            setTimeout(() => window.location.reload(), 3500)
+            setTimeout(() => this.props.history.push({pathname: '/'}), 3500)
         } catch(e){
             this.setState({msg: '', errormsg: e.message})
         }
