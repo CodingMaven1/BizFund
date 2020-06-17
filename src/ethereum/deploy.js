@@ -1,10 +1,9 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const keys = require('../config/keys');
 const Web3 = require('web3');
 const compiledFactory = require('./build/CampaignFactory.json');
 
 const provider = new HDWalletProvider(
-    keys.pvkey, keys.infurakey
+    process.env.REACT_APP_PV_KEY, process.env.REACT_APP_INFURA_KEY
 );
 
 const web3 = new Web3(provider);

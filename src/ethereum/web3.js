@@ -1,5 +1,4 @@
 import Web3 from 'web3';
-const keys = require('../config/keys');
 
 let web3;
 
@@ -9,8 +8,8 @@ if(typeof window !== 'undefined' && typeof window.web3 !== 'undefined'){
     window.ethereum.enable()
 }
 else{
-    //On Server or No metamask
-    const provider = new Web3.providers.HttpProvider(keys.infurakey);
+    //No metamask
+    const provider = new Web3.providers.HttpProvider(process.env.REACT_APP_INFURA_KEY);
     web3 = new Web3(provider) 
 }
 

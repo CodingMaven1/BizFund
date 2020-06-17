@@ -58,6 +58,38 @@ class ViewRequests extends React.Component{
         }
     }
 
+    onFinalizeHandler = async (event, sn) => {
+        event.preventDefault();
+        let {appCount} = this.state;
+        const id = this.props.match.params.id
+        const campaign = await new web3.eth.Contract(JSON.parse(Campaign.interface), id)
+        const accounts = await web3.eth.getAccounts();
+        const fulldata = await campaign.methods.getFullData().call();
+        let data = await campaign.methods.requests(sn).call();
+        if(accounts[0] !== fulldata[7]){
+            this.setState({msg: '', errormsg: 'Only the campaign manager can finalize a request!'})
+            return;
+        }
+        if(parseInt(data[4]) <= parseInt(appCount/2)){
+            this.setState({msg: '', errormsg: 'Approvals should be more than half of the number of approvers!'})
+            return;
+        }
+        if(parseInt(data[1]) >= parseInt(fulldata[5])){
+            this.setState({msg: '', errormsg: 'Amount requested is more then the total funding recieved!'})
+            return;
+        }
+        
+        try{
+            this.setState({errormsg: '', msg: 'Finalizing the request...'})
+            const hash = await campaign.methods.finalizeRequest(sn).send({from: accounts[0]})
+            console.log(hash)
+            this.setState({msg: 'Your request was finalized!'})
+            setTimeout(() => window.location.reload(), 1500)
+        } catch(e){
+            this.setState({msg: '', errormsg: e.message})
+        }
+    }
+
     renderTableHeader() {
         let header = Object.keys(this.state.data[0])
         let data = header.slice(5,10)
@@ -77,24 +109,25 @@ class ViewRequests extends React.Component{
     renderTableData() {
         let {appCount} = this.state;
         return this.state.data.map((data, idx) => {
-            let val;
+            let val, display;
             if(data[3]){
                 val = "Approved"
+                display = false
             }
             else{
                 val = "Yet to be approved"
+                display = true
             }
-
            return (
-              <tr key={idx}>
+              <tr key={idx} className={`${display ? '' : 'Tr-op'}`}>
                  <td>{idx + 1}</td>
                  <td>{data[0]}</td>
                  <td>{data[1]}</td>
                  <td>{data[2]}</td>
                  <td>{val}</td>
                  <td>{data[4]}/{appCount}</td>
-                 <td><Button green clicked={e => this.onApproveHandler(e,idx)} title="Approve" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
-                 <td><Button red clicked={this.onFinalizeHandler} title="Finalize" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/></td>
+                 <td>{display ? <Button green clicked={e => this.onApproveHandler(e,idx)} title="Approve" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/> : null}</td>
+                 <td>{display ? <Button red clicked={e => this.onFinalizeHandler(e, idx)} title="Finalize" size="1.7rem" padding="0.7rem 1.2rem" transform="capitalize"/> : null}</td>
               </tr>
            )
         })
